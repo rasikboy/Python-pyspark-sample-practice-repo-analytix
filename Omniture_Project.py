@@ -11,9 +11,9 @@ spark = SparkSession \
     .config("spark.cores.max", "4") \
     .getOrCreate()
 spark.sparkContext.setLogLevel("INFO")
-omniture_path = "D:\\Big_Data\\Big Data\\Final Projects\\CaseStudy-1\\Omniture.tsv"
-regusers_path = "D:\\Big_Data\\Big Data\\Final Projects\\CaseStudy-1\\regusers.tsv"
-url_map_path = "D:\\Big_Data\\Big Data\\Final Projects\\CaseStudy-1\\urlmap.tsv"
+omniture_path = "<file path here>"
+regusers_path = "<file path here>"
+url_map_path = "<file path here>"
 
 regusersDF = spark.read.csv(path=regusers_path, header=True, inferSchema=True, sep='\t')
 url_map_pathDF = spark.read.csv(url_map_path, inferSchema=True, header=True, sep='\t')
@@ -61,5 +61,5 @@ LEFT OUTER JOIN regusers u
 ON omniture.sw_id = u.SWID ''')
 
 
-#final_ouput.repartition(1).write.format("delta").save("C:\\spark-2.4.5-bin-hadoop2.7\\data\\tmp\\OmnitureDeltaTable")
+final_ouput.repartition(1).write.format("delta").save("C:\\spark-2.4.5-bin-hadoop2.7\\data\\tmp\\OmnitureDeltaTable")
 print(final_ouput.show())
